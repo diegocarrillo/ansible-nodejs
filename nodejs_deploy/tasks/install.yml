@@ -1,6 +1,5 @@
 ---
 - name: install pm2 globally
-  become_user: "{{ project_user }}"
   become: yes
   npm: name=pm2 state=present global=yes
   notify: update pm2
@@ -12,12 +11,10 @@
   register: pm2_user_home
 
 - name: Installing startup script
-  become_user: "{{ project_user }}"
   become: yes
   command: "pm2 startup -u {{ project_user }} --hp {{ pm2_user_home.stdout }}"
 
 - name: Ensure service directory exists
-  become_user: "{{ project_user }}"
   become: yes
   file:
     state: "{{ item }}"
@@ -29,7 +26,6 @@
     - directory
 
 - name: Extract artifact into install_idr
-  become_user: "{{ project_user }}"
   become: yes
   unarchive:
     src: "{{ packageURL }}"
@@ -39,7 +35,6 @@
     remote_src: true
 
 - name: start the application
-  become_user: "{{ project_user }}"
   become: yes
   shell: "NODE_ENV={{ env }} PORT={{ service_port }} pm2 start app.js  --name {{ service_name }}_1.0.0 -x  || pm2 gracefulReload {{ service_name }}_1.0.0"
   args:
@@ -53,7 +48,6 @@
 
 
 - name: Save the state of the application
-  become_user: "{{ project_user }}"
   become: yes
   shell: pm2 save
   args:
@@ -65,7 +59,6 @@
     LD_LIBRARY_PATH: /appserver/java/jdk1.8.0_11/jre/lib/amd64:/appserver/java/jdk1.8.0_11/jre/lib/amd64/server
 
 - name: copy the packageURL into version.txt
-  become_user: "{{ project_user }}"
   become: yes
   copy:
     content: "{{ packageURL }}"
