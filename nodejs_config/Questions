@@ -1,0 +1,46 @@
+On the example I took from here I saw the role for the repository, should we have the same file:
+
+http://yallalabs.com/linux/how-to-install-epel-repository-with-ansible-on-centos-7-rhel-7/
+
+----------------------------------------------------
+
+6. Step Create role-repo.yml Playbook
+In the same directory as the roles directory, we have to create a new yaml file where we going to define the hosts, remote user to connect and finally the directory name of the rool to be executed.
+
+[ansadm@ansible ~]$ vi role-repo.yml
+
+
+---
+- hosts: all
+  sudo: yes
+  gather_facts: yes #IMPORTANT
+  remote_user: root
+  roles:
+    - epel-repository
+
+-------------------------------------------------------------------------
+Do we have an specific version to use for node.js
+---------------------------------
+
+- name: Add npm_config_prefix bin directory to global $PATH.
+  template:
+    src: npm.sh.j2
+    dest: /etc/profile.d/npm.sh
+    mode: 0644 <----- is remplaced with ...
+
+    - name: Add npm_config_prefix bin directory to global $PATH.
+  become: yes
+  become_user: root
+  with_items:
+    - f: npm.sh
+      d: /etc/profile.d
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: '{{item.m|default("0644")}}'
+    ---------------------
+
+this should be the same?
+
+LOG_FOLDER=/var/log/{{ project }}
+LOG_FILE={{ service_name }}.log

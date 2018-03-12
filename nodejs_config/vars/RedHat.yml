@@ -1,0 +1,4 @@
+---
+npm_config_prefix: /usr/node/{{nodejs_ver}}
+
+nodejs_setup: rpm

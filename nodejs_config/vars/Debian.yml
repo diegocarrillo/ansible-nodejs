@@ -1,0 +1,6 @@
+---
+npm_config_prefix: /usr/lib/node/nodejs-{{nodejs_ver}}
+
+nodejs_setup: ppa
+
+nodejs_package_json_path:

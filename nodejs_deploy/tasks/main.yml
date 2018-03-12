@@ -1,0 +1,39 @@
+- name: Check if version.txt Exists
+  become_user: "{{ project_user }}"
+  become: yes
+  stat:
+    path: "{{ install_dir }}/version.txt"
+  register: version_file_exists
+
+- name: Check contents of version.txt
+  command: cat "{{ install_dir }}/version.txt"
+  register: version_file_contents
+  when: version_file_exists.stat.exists
+  changed_when: false
+
+- name: Print Environment
+  debug:
+    msg: "{{ env }}"
+- include_tasks: deploy_app.yml
+  when: version_file_contents.stdout is undefined or version_file_contents.stdout != packageURL
+
+- include: install.yml
+  tags:
+    - web
+    - pm2
+    - install
+    - pm2-install
+
+- include: manage.yml
+  tags:
+    - web
+    - pm2
+    - manage
+    - pm2-manage
+
+- include: service.yml
+  tags:
+    - web
+    - pm2
+    - service
+    - pm2-service

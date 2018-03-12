@@ -1,0 +1,2 @@
+LOG_FOLDER=/var/log/{{ project }}
+LOG_FILE={{ service_name }}.log

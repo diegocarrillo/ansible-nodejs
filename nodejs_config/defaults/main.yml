@@ -1,0 +1,15 @@
+---
+
+nodejs_ver : "8.x"
+nodejs_minor_ver : 0
+npm_config_prefix: "/usr/local/lib/npm"
+npm_config_unsafe_perm: "false"
+
+service_port: 8080
+
+nodejs_npm_global_packages: []
+
+nodejs_package_json_path: ""
+
+linux_install_dir:  "/var/lib/project/{{ project }}"
+linux_log_dir: "/var/log/{{ project }}"
