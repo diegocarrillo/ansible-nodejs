@@ -14,10 +14,10 @@
 - name: Print Environment
   debug:
     msg: "{{ env }}"
-- include_task: install.yml
+- import_tasks: install.yml
   when: version_file_contents.stdout is undefined or version_file_contents.stdout != packageURL
 
-- import_task: install.yml
+- import_tasks: install.yml
   tags:
     - web
     - pm2
@@ -25,14 +25,14 @@
     - pm2-install
 
 
-- import_task: manage.yml
+- import_tasks: manage.yml
   tags:
     - web
     - pm2
     - manage
     - pm2-manage
 
-- import_task: service.yml
+- import_tasks: service.yml
   tags:
     - web
     - pm2
