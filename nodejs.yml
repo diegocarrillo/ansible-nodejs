@@ -19,6 +19,5 @@
     project: ansible
     service_name: application
     nodejs_version: "8.x"
-    packageURL: "https://bams-amers-sami.int.thomsonreuters.com/artifactory/default.generic.local/transfer-pricing/ooxp-service-definitions/ooxp-service-definitions.1.0/ooxp-service-definitions.1.0.0-350.tar.gz"
     ansible_distribution_major_version: 7
     env: DEV
