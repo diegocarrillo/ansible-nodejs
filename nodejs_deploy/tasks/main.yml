@@ -14,10 +14,8 @@
 - name: Print Environment
   debug:
     msg: "{{ env }}"
-- include_tasks: deploy_app.yml
+- include_tasks: install.yml
   when: version_file_contents.stdout is undefined or version_file_contents.stdout != packageURL
-
-- include: deploy_app.yml
 
 - include: install.yml
   tags:
