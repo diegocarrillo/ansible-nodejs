@@ -14,7 +14,7 @@
 - name: Print Environment
   debug:
     msg: "{{ env }}"
-- import_task: install.yml
+- include_task: install.yml
   when: version_file_contents.stdout is undefined or version_file_contents.stdout != packageURL
 
 - import_task: install.yml
