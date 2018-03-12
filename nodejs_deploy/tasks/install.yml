@@ -11,6 +11,7 @@
   register: pm2_user_home
 
 - name: Installing startup script
+  become_user: root
   become: yes
   command: "pm2 startup -u {{ project_user }} --hp {{ pm2_user_home.stdout }}"
 
