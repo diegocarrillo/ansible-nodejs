@@ -1,6 +1,7 @@
 - name: Check if version.txt Exists
   become_user: "{{ project_user }}"
   become: yes
+  become_method: sudo
   stat:
     path: "{{ install_dir }}/version.txt"
   register: version_file_exists
