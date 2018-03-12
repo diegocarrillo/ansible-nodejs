@@ -1,0 +1,24 @@
+--- #NODEJS APP DEPLOY
+- name: Deploy my awesome app by Diego
+  hosts: tag_Name_nodejs_diego_test4
+  remote_user: ec2-user
+  become: true
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: list files
+    command: ls -a
+    register: result
+  - name: Display the results
+    debug: var=result
+
+  roles:
+    - nodejs_config
+    - nodejs_deploy
+  vars:
+    project: ansible
+    service_name: application
+    nodejs_version: "8.x"
+    packageURL: "https://bams-amers-sami.int.thomsonreuters.com/artifactory/default.generic.local/transfer-pricing/ooxp-service-definitions/ooxp-service-definitions.1.0/ooxp-service-definitions.1.0.0-350.tar.gz"
+    ansible_distribution_major_version: 7
+    env: DEV
