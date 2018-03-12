@@ -6,6 +6,8 @@
   register: version_file_exists
 
 - name: Check contents of version.txt
+  become_user: "{{ project_user }}"
+  become: yes
   command: cat "{{ install_dir }}/version.txt"
   register: version_file_contents
   when: version_file_exists.stat.exists
