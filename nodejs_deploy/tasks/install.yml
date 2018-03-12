@@ -27,7 +27,6 @@
     - directory
 
 - name: Extract artifact into install_idr
-  become: yes
   unarchive:
     src: "{{ packageURL }}"
     dest: "{{ install_dir }}"
