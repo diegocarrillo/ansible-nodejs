@@ -12,6 +12,8 @@
   register: pm2_user_home
 
 - name: Installing startup script
+  become_user: "{{ project_user }}"
+  become: yes
   command: "pm2 startup -u {{ project_user }} --hp {{ pm2_user_home.stdout }}"
 
 - name: Ensure service directory exists
