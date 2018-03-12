@@ -1,6 +1,6 @@
 --- #NODEJS APP DEPLOY
 - name: Deploy my awesome app by Diego
-  hosts: tag_Name_nodejs_diego_test4
+  hosts: tag_Name_nodejs_diego_test5
   remote_user: ec2-user
   become: true
   gather_facts: yes
