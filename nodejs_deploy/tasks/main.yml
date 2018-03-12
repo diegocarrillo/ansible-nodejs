@@ -19,12 +19,15 @@
 - include_tasks: deploy_app.yml
   when: version_file_contents.stdout is undefined or version_file_contents.stdout != packageURL
 
+- include: deploy_app.yml
+
 - include: install.yml
   tags:
     - web
     - pm2
     - install
     - pm2-install
+
 
 - include: manage.yml
   tags:
