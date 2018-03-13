@@ -10,8 +10,6 @@
   register: pm2_user_home
 
 - name: Installing startup script
-  become_user: ec2-user
-  become: true
   become: yes
   command: "pm2 startup -u {{ project_user }} --hp {{ pm2_user_home.stdout }}"
 
