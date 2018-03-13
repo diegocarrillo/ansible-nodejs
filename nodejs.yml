@@ -4,20 +4,11 @@
   remote_user: ec2-user
   become: true
   gather_facts: yes
-  connection: ssh
-  tasks:
-  - name: list files
-    command: ls -a
-    register: result
-  - name: Display the results
-    debug: var=result
 
   roles:
     - nodejs_config
     - nodejs_deploy
   vars:
-    project: ansible
-    service_name: application
     nodejs_version: "8.x"
     ansible_distribution_major_version: 7
     env: DEV

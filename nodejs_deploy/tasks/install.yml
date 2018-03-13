@@ -1,5 +1,6 @@
 ---
 - name: install pm2 globally
+  become_user: ec2-user
   npm: name=pm2 state=present global=yes
   notify: update pm2
 
