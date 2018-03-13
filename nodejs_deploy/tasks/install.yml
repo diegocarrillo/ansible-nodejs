@@ -1,6 +1,5 @@
 ---
 - name: install pm2 globally
-  become: yes
   npm: name=pm2 state=present global=yes
   notify: update pm2
 
@@ -12,6 +11,7 @@
 
 - name: Installing startup script
   become_user: ec2-user
+  become: true
   become: yes
   command: "pm2 startup -u {{ project_user }} --hp {{ pm2_user_home.stdout }}"
 
