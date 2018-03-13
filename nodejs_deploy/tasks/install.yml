@@ -47,8 +47,6 @@
 
 
 - name: Save the state of the application
-  become_user: ec2-user
-  become: yes
   shell: pm2 save
   args:
     chdir: "{{ install_dir }}"
