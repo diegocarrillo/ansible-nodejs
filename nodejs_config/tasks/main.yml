@@ -19,7 +19,6 @@
     state: directory
 
 - name: Add npm_config_prefix bin directory to global $PATH.
-  become: yes
   template:
     src: npm.sh.j2
     dest: /etc/profile.d/npm.sh
