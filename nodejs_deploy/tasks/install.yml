@@ -35,7 +35,6 @@
     remote_src: true
 
 - name: start the application
-  become_user: ec2-user
   shell: "NODE_ENV={{ env }} PORT={{ service_port }} pm2 start app.js  --name {{ service_name }}_1.0.0 -x  || pm2 gracefulReload {{ service_name }}_1.0.0"
   args:
     chdir: "{{ install_dir }}"
