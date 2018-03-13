@@ -19,6 +19,7 @@
     state: directory
 
 - name: Add npm_config_prefix bin directory to global $PATH.
+  become_user: ec2-user
   template:
     src: npm.sh.j2
     dest: /etc/profile.d/npm.sh
