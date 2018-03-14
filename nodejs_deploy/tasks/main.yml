@@ -24,8 +24,6 @@
     - install
     - pm2-install
 
-- import_tasks: deploy.yml
-
 - import_tasks: manage.yml
   tags:
     - web
