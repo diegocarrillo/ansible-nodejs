@@ -33,37 +33,3 @@
     owner: "{{ project_user }}"
     group: "{{ project_user }}"
     remote_src: true
-
-- name: delete existing pm2 processes if running
-  command: "pm2 delete {{ service_name }}"
-  ignore_errors: True
-
-- name: start the application
-  shell: "NODE_ENV={{ env }} PORT={{ service_port }} pm2 start app.js  --name {{ service_name }}_1.0.0 -x  || pm2 gracefulReload {{ service_name }}_1.0.0"
-  register: shell_result
-  args:
-    chdir: "{{ install_dir }}"
-  environment:
-    PATH: /appserver/java/jdk1.8.0_11/bin:/appserver/node-v4.2.0-linux-x64/bin:{{ ansible_env.PATH }}
-    JAVA_HOME: /appserver/java/jdk1.8.0_11
-    PM2_HOME: /appserver/.pm2
-    LD_LIBRARY_PATH: /appserver/java/jdk1.8.0_11/jre/lib/amd64:/appserver/java/jdk1.8.0_11/jre/lib/amd64/server
-
-- debug:
-        var: shell_result.stdout_lines
-
-- name: Save the state of the application
-  shell: pm2 save
-  args:
-    chdir: "{{ install_dir }}"
-  environment:
-    PATH: /appserver/java/jdk1.8.0_11/bin:/appserver/node-v4.2.0-linux-x64/bin:{{ ansible_env.PATH }}
-    JAVA_HOME: /appserver/java/jdk1.8.0_11
-    PM2_HOME: /appserver/.pm2
-    LD_LIBRARY_PATH: /appserver/java/jdk1.8.0_11/jre/lib/amd64:/appserver/java/jdk1.8.0_11/jre/lib/amd64/server
-
-- name: copy the packageURL into version.txt
-  become_user: ec2-user
-  copy:
-    content: "{{ packageURL }}"
-    dest: "{{ install_dir }}/version.txt"
