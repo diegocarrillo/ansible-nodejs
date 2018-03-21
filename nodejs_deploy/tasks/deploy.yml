@@ -4,7 +4,7 @@
   ignore_errors: True
 
 - name: start the application
-  shell: "NODE_ENV={{ env }} PORT={{ service_port }} pm2 start app.js  --name {{ service_name }}_1.0.0 -x  || pm2 gracefulReload {{ service_name }}_1.0.0"
+  shell: "pm2 start pm2ecosystem.json --env dev || pm2 gracefulReload pm2ecosystem.json --env dev"
   register: shell_result
   args:
     chdir: "{{ install_dir }}"
