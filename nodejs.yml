@@ -12,3 +12,4 @@
     nodejs_version: "8.x"
     ansible_distribution_major_version: 7
     env: DEV
+    install_dir: /home/ec2-user/test
